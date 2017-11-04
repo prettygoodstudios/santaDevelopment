@@ -1,0 +1,12 @@
+<h1>Verify Your Email</h1>
+<p>You must verify your email in order to use this service.</p>
+<form action="/checkToken/<%= @user.id %>" method="post">
+  <div class="form-group">
+    <label for"token">Enter the code Recieved in your email to activate your acount.</label>
+    <input type="text" name="token" id="token"/>
+  </div>
+  <input type="submit" value="Activate" class="waves-effect waves-light btn" style="color:white !important;"/>
+  <br>
+  <br>
+  <%= link_to "Resend Code", "/verify/#{@user.id}?resend=t" %>
+</form>

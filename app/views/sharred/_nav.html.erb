@@ -1,0 +1,20 @@
+<nav class="light-blue accent-2">
+  <div class="nav-wrapper">
+    <%= link_to "Sub For Santa", root_path, class: "brand-logo center" %>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <% if current_user != nil %>
+        <li><%= link_to "My Families", user_path %></li>
+        <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+      <% end %>
+      <%= login_helper %>
+    </ul>
+    <ul id="mobile-demo" class="side-nav">
+      <% if current_user != nil %>
+        <li><%= link_to "My Families", user_path %></li>
+        <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+      <% end %>
+      <%= login_helper %>
+    </ul>
+  </div>
+</nav>

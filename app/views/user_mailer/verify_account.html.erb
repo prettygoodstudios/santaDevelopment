@@ -1,0 +1,12 @@
+<div class="banner">
+  <h1>Sunshine Heroes</h1>
+</div>
+<p>
+  Dear <%= @user.name %>,
+</p>
+<p>
+  Visit this url <a href="<%=  root_url + "verify/" + @user.id.to_s %>"><%=  root_url + "verify/" + @user.id.to_s %></a> and enter the code found below to activate your account.
+</p>
+<p>
+  <%= @token %>
+</p>

@@ -1,0 +1,58 @@
+<h1><%= @family.name %></h1>
+<%= link_to "Edit Family", edit_family_path(@family) %>
+<%= link_to "Delete Family", family_path(@family), method: :delete %>
+<%= link_to "New Item", new_item_path(id: @family.id) %>
+<%= link_to "Back", admin_path %>
+<table>
+  <tr>
+    <th>
+      Email
+    </th>
+    <th>
+      Phone
+    </th>
+    <th>
+      City
+    </th>
+    <th>
+      Address
+    </th>
+    <th>
+      Cost Of Remaining Items
+    </th>
+    <th>
+      Items Left
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <%= @family.email %>
+    </td>
+    <td>
+      <%= number_to_phone @family.phone %>
+    </td>
+    <td>
+      <%= @family.city %>
+    </td>
+    <td>
+      <%= @family.address %>
+    </td>
+    <td>
+      <%= number_to_currency @family.cost %>
+    </td>
+    <td>
+      <% temp =  @family.items.available %>
+      <%= temp.length %>
+    </td>
+  </tr>
+</table>
+<ul id="tabs-swipe-demo" class="tabs">
+  <li class="tab col s3"><a href="#test-swipe-1">Donated Items</a></li>
+  <li class="tab col s3"><a href="#test-swipe-2">Available Items</a></li>
+</ul>
+<div id="test-swipe-1" class="col s12">
+  <%= render partial: "sharred/items", locals: {items: @donated,family: true,mine: params[:mine],admin: true} %>
+</div>
+<div id="test-swipe-2" class="col s12">
+  <%= render partial: "sharred/items", locals: {items: @available,family: true,mine: params[:mine],admin: true} %>
+</div>

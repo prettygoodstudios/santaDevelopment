@@ -1,0 +1,37 @@
+<h1><%= @item.name %></h1>
+<h3><%= @family.name %></h3>
+<% if params[:from] == "home" %>
+  <%= link_to "Back", @family %>
+<% elsif params[:from] == "mine" %>
+  <%= link_to "Back", "/my_family/#{@family.id}?user=#{params[:user]}"%>
+<% elsif params[:from] == "admin" %>
+  <%= link_to "Back", "/family_admin/#{@family.id}"%>
+<% else %>
+  <%= link_to "Back", "/admin" %>
+<% end %>
+<table>
+  <tr>
+    <th>Total Cost</th>
+    <td><%= number_to_currency(@item.totalCost) %></td>
+  </tr>
+  <tr>
+    <th>Cost Per Unit</th>
+    <td><%= number_to_currency @item.cost %></td>
+  </tr>
+  <tr>
+    <th>Quantity</th>
+    <td><%= @item.quantity.to_i %></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td><%= @item.description %></td>
+  </tr>
+  <tr>
+    <th>Family Member Name</th>
+    <td><%= @item.member %></td>
+  </tr>
+  <tr>
+    <th>Family Member Age</th>
+    <td><%= @item.age.to_i %></td>
+  </tr>
+</table>

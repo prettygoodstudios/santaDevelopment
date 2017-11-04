@@ -1,0 +1,34 @@
+<ul class="collection">
+  <% items.each do |i| %>
+    <li class="collection-item avatar">
+      <img src="https://maxcdn.icons8.com/Share/icon/Clothing//t-shirt1600.png" class="circle">
+      <% if mine == "true" %>
+        <span class="title"><%= link_to i.name, item_path(id: i,from: "mine",user: params[:user]) %></span>
+      <% elsif admin %>
+        <span class="title"><%= link_to i.name, item_path(id: i,from: "admin") %></span>
+      <% elsif admin_home %>
+        <span class="title"><%= link_to i.name, item_path(id: i,from: "admin_home") %></span>
+      <% else %>
+        <span class="title"><%= link_to i.name, item_path(id: i,from: "home") %></span>
+      <% end %>
+      <p><%= number_to_currency i.totalCost %> <br>
+         <%= i.quantity.to_i %> quantity
+      </p>
+      <% if family %>
+        <div class="secondary-content">
+          <% if current_user != nil %>
+            <% if current_user.admin %>
+              <%= link_to "Edit Item", edit_item_path(i) %>
+              <%= link_to "Delete Item", item_path(i), method: :delete %>
+            <% end %>
+          <% end %>
+          <% if i.user_id == nil and !admin and current_user != nil %>
+            <input type="checkbox" id="<%= i.id %>" name="<%= i.id %>" value="true" <%= check_value i.donation %> /><label for="<%= i.id %>" ></label>
+          <% elsif current_user.admin or i.user_id == current_user.id and !admin %>
+            <input type="checkbox" id="<%= i.id %>" name="<%= i.id %>" value="true" <%= check_value i.donation %> /><label for="<%= i.id %>" ></label>
+          <% end %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,10 @@
+Sunshine Heroes Donation Update
+Dear <%= @donor.name %>, you have agreed to donate the following items:
+<% @donor.message.split(",").each do |i| %>
+  <% if i == "" %>
+    <% next %>
+  <% end %>
+  <li><%= i.html_safe %></li>
+<% end %>
+Deliver the following items to 3585 N University Ave #300, Provo, UT 84604 on Saturday December 16th. Thank you for your generous contribution.
+If you have any issues or concern feel free to contact us at this number 801-377-1423.

@@ -1,0 +1,68 @@
+<h1><%= @family.name %></h1>
+<% if current_user != nil %>
+  <% if current_user.admin %>
+    <%= link_to "Edit Family", edit_family_path(@family) %>
+    <%= link_to "Delete Family", family_path(@family), method: :delete %>
+    <%= link_to "New Item", new_item_path(id: @family.id) %>
+  <% end %>
+<% end %>
+<%= link_to "Back", root_path %>
+<table>
+  <tr>
+    <th>
+      Cost
+    </th>
+    <th>
+      Items
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <%= number_to_currency @family.cost %>
+    </td>
+    <td>
+      <%= @family.items.available.length %>
+    </td>
+  </tr>
+</table>
+<% if current_user != nil %>
+  <% if !(@family.mine current_user.id and params[:mine] == "true") %>
+    <h5>Select Items to Donate</h5>
+  <% end %>
+<% else %>
+  <p> Log in to donate items to this family.</p>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %>
+<form action="/update_item" method="post">
+<%= render partial: "sharred/items", locals: {items: @items,family: true,mine: params[:mine],admin: false,admin_home: false} %>
+
+<input type="hidden" name="family" id="family" value="<%= @family.id %>" />
+<% if @family.notTaken && params[:mine] != "true" && current_user != nil %>
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="modalToggle">Donate!</a>
+  <script>
+    $("#modalToggle").click(function(){
+       $(".collection>li").each(function(){
+           var parse = $(this).find(".secondary-content").html();
+           var parse2 = parse.split('id="')[1];
+           var parse3 = parse2.split('"')[0];
+           var checkbox = document.getElementById(parse3).checked;
+           if(checkbox){
+             $(".modal-content").append($(this).html());
+             $(".modal-content .secondary-content").hide();
+           }
+      });
+    });
+  </script>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Confirm Donation</h4>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+      <input type="submit" value="Confirm" class="waves-effect waves-green btn-flat"/>
+    </div>
+  </div>
+<% end %>
+</form>

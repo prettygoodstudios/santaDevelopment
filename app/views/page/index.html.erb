@@ -1,0 +1,42 @@
+<h1>Family's</h1>
+<% us = false %>
+<% if current_user != nil %>
+  <% if current_user.admin %>
+    <% us = current_user.admin %>
+    <%= link_to "New", new_family_path %>
+  <% end %>
+<% end %>
+<form action="<%= root_path %>" method="get" id="filter">
+  <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3" id="c2"><a class="active" href="#test-swipe-1">Sort By Price</a></li>
+    <li class="tab col s3" id="i2"><a href="#test-swipe-2">Sort By Items</a></li>
+  </ul>
+  <div id="test-swipe-1" class="col s12 options">
+    <div class="switch">
+      <label>
+        Cheapest
+        <input type="checkbox" name="cost" id="c-2">
+        <span class="lever"></span>
+        Most Expensive
+      </label>
+    </div>
+  </div>
+  <div id="test-swipe-2" class="col s12 options">
+    <div class="switch">
+      <label>
+        Least Items
+        <input type="checkbox" name="item" id="i-2">
+        <span class="lever"></span>
+        Most Items
+      </label>
+    </div>
+  </div>
+  <input type="hidden" value="price" name="mode" id="m1">
+</form>
+<%= render partial: "sharred/families", locals: {family: @families,mine: params[:mine]} %>
+<script>
+$(document).ready(function(){
+  values= {};
+  setInterval(loadFamilies(values,<%= us %>),1000);
+});
+</script>

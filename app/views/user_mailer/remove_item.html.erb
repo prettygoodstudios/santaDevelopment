@@ -1,0 +1,13 @@
+<div class="banner">
+  <h1>Sunshine Heroes</h1>
+</div>
+<p>
+  Dear <%= @user.name %>,
+</p>
+<p>
+  You have removed the following items <%= @items %>. You will no longer be responsible for donating these items. Click on the link below to see what items you are still responsible for donating.
+</p>
+<a href="<%= root_url %>user"><%= root_url %>user</a>
+<p>
+  <%= @token %>
+</p>

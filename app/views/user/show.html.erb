@@ -1,0 +1,14 @@
+<h1><%= current_user.name %></h1>
+<h3>My Families</h3>
+<script>
+  var mine= "true";
+</script>
+<%= render partial: "sharred/families", locals: {family: @familys,mine: true,admin_home: false} %>
+<script>
+$(document).ready(function(){
+  values= {
+    mine: true
+  };
+  setInterval(loadFamilies(values,false),1000);
+});
+</script>

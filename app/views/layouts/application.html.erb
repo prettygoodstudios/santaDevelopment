@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Santa</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render partial: "sharred/nav" %>
+    <%= render partial: "sharred/alerts", locals: {alerts:  alert,notice: notice} %>
+    <div class="container content">
+      <!--
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      -->
+      <%= yield %>
+    </div>
+    <%= render "sharred/footer" %>
+    <script>
+      $(document).ready(function(){
+        $(".button-collapse").sideNav();
+        $("#c2").click(function(){
+          $("#m1").val("price");
+          document.getElementById("i-2").checked = false;
+          $("#filter").submit();
+        });
+        $("#i2").click(function(){
+          $("#m1").val("item");
+          document.getElementById("c-2").checked = false;
+          $("#filter").submit();
+        });
+        $('#filter :checkbox').change(function() {
+          $("#filter").submit();
+        });
+        $("#filter").submit(function(e){
+          // get all the inputs into an array.
+          var $inputs = $('#filter :input');
+          // not sure if you wanted this, but I thought I'd add it.
+          // get an associative array of just the values.
+          var values = {};
+          $inputs.each(function() {
+              values[this.name] = $(this).val();
+          });
+          if (document.getElementById("i-2").checked){
+            values.item = "on";
+          }else{
+            values.item = "false";
+          }
+          if (document.getElementById("c-2").checked){
+            values.cost = "on";
+          }else{
+            values.cost = "false";
+          }
+          loadFamilies(values);
+
+          e.preventDefault();
+        });
+        $('.modal').modal();
+      });
+      $('.collapsible').collapsible();
+    </script>
+  </body>
+</html>
