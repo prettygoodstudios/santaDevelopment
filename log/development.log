@@ -24041,3 +24041,35 @@ Processing by PageController#landing as HTML
 Completed 200 OK in 92ms (Views: 89.2ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/landing" for 127.0.0.1 at 2017-11-03 20:34:48 -0600
+Processing by PageController#landing as HTML
+  Rendering page/landing.html.erb within layouts/application
+  Rendered page/landing.html.erb within layouts/application (1.4ms)
+  Rendered sharred/_nav.html.erb (1.9ms)
+  Rendered sharred/_alerts.html.erb (0.6ms)
+  Rendered sharred/_footer.html.erb (0.6ms)
+Completed 200 OK in 99ms (Views: 97.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/register" for 127.0.0.1 at 2017-11-03 20:34:50 -0600
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (33.8ms)
+  Rendered sharred/_nav.html.erb (1.9ms)
+  Rendered sharred/_alerts.html.erb (0.4ms)
+  Rendered sharred/_footer.html.erb (0.5ms)
+Completed 200 OK in 164ms (Views: 161.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2017-11-03 20:34:54 -0600
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (9.0ms)
+  Rendered sharred/_nav.html.erb (2.2ms)
+  Rendered sharred/_alerts.html.erb (0.5ms)
+  Rendered sharred/_footer.html.erb (0.6ms)
+Completed 200 OK in 137ms (Views: 134.2ms | ActiveRecord: 0.0ms)
+
+
