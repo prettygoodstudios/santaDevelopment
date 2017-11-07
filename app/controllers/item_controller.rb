@@ -20,7 +20,7 @@ class ItemController < ActionController::Base
       familyCost += i.totalCost
     end
     @family.update_attribute("cost",familyCost)
-    family.update_attribute("lf", f.items.available.length)
+    @family.update_attribute("lf", f.items.available.length)
     redirect_to @family, alert: "Item Deleted"
   end
   def update
