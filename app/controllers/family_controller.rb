@@ -35,14 +35,18 @@ class FamilyController < ActionController::Base
     if @family.save
       @family.update_attribute("cost",0)
       #@family.update_attribute("lf",0)
-      redirect_to @family
+      redirect_to "/family_admin/" + @family.id.to_s
     else
       redirect_to new_family_path(@family), alert: @family.errors.values.first.to_s
     end
   end
   def destroy
     @family.destroy!
-    redirect_to root_path
+    if params[:mode] != nil
+      redirect_to admin_path(mode: "family")
+    else
+      redirect_to root_path
+    end
   end
   def add_family
       current_user.familys << @family

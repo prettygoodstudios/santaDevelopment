@@ -7,7 +7,7 @@
 <% elsif params[:from] == "admin" %>
   <%= link_to "Back", "/family_admin/#{@family.id}"%>
 <% else %>
-  <%= link_to "Back", "/admin" %>
+  <%= link_to "Back", "/admin?mode=item" %>
 <% end %>
 <table>
   <tr>

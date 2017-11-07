@@ -43,6 +43,9 @@ function renderFamilies(families,mine,donor,mode){
     var delLink = document.createElement("a");
     delLink.innerHTML = "Delete";
     delLink.href = "family/"+families[i].id;
+    if (mode == "admin"){
+      delLink.href = "family/"+families[i].id+"?mode=admin";
+    }
     var att = document.createAttribute("data-method");       // Create a "class" attribute
     att.value = "delete";                           // Set the value of the class attribute
     delLink.setAttributeNode(att);
