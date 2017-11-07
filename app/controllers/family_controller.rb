@@ -1,7 +1,7 @@
 class FamilyController < ActionController::Base
   layout 'application'
   before_action :set_family, only: [:show,:edit,:destroy,:update,:add_family,:remove_family]
-  before_action :is_admin, only: [:edit,:destroy,:update,:create,:new,:family_admin]
+  before_action :is_admin, only: [:edit,:destroy,:update,:create,:new,:family_admin,:family_deliver,:delivery_is_sent,:revoke_delivery]
   before_action :mine_or_admin, only: [:my_family]
   def index
       @families = Family.all.available
@@ -99,6 +99,19 @@ class FamilyController < ActionController::Base
     @donated = @family.items.donated
     @available = @family.items.available
   end
+  def family_deliver
+    @family = Family.find(params[:id])
+  end
+  def delivery_is_sent
+    @family = Family.find(params[:id])
+    @family.update_attribute("delivered",true)
+    redirect_to "/admin", alert: "Delivery Has Been Sent"
+  end
+  def revoke_delivery
+    @family = Family.find(params[:id])
+    @family.update_attribute("delivered",false)
+    redirect_to "/admin", alert: "Delivery Has Been Revoked"
+  end
   def api
     Family.all.each do |f|
       f.update_attribute("left",f.items.available.length)
@@ -123,7 +136,9 @@ class FamilyController < ActionController::Base
     elsif params[:mode] == "donor"
         @families = Family.all.isMine params[:donor].to_i
     elsif params[:mode] == "recieved"
-        @families = Family.all.isRecieved
+        @families = Family.all.isRecieved.select{ |f| !f.delivered }
+    elsif params[:mode] == "delivered"
+        @families = Family.all.isDelivered
     else
       @families = Family.cheapest.available
     end

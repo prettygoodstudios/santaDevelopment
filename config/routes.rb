@@ -20,5 +20,8 @@ Rails.application.routes.draw do
   post "/checkToken/:id", to: "user#checkToken"
   post "/remove_status", to: "item#remove_status"
   post "/recieved", to: "item#recieved"
+  get "/delivery/:id", to: "family#family_deliver"
+  post "/send_delivery/:id", to: "family#delivery_is_sent"
+  post "/revoke_delivery/:id", to: "family#revoke_delivery"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,4 +1,5 @@
 <ul class="collection">
+  <% items = items.select{ |i| !i.recieved } if mine == "true" %>
   <% items.each do |i| %>
     <li class="collection-item avatar">
       <img src="https://maxcdn.icons8.com/Share/icon/Clothing//t-shirt1600.png" class="circle">

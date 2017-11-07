@@ -48,12 +48,17 @@
     </td>
   </tr>
 </table>
-<h5>Select Items to Remove</h5>
-<form action="/remove_status" method="post">
-<%= render partial: "sharred/items", locals: {items: @items,family: true,mine: "true",admin: false} %>
-<input type="hidden" name="family" id="family" value="<%= @family.id %>" />
-<!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="modalToggle">Remove!</a>
+<% if !@family.recieved %>
+  <h5>Select Items to Remove</h5>
+  <form action="/remove_status" method="post">
+  <%= render partial: "sharred/items", locals: {items: @items,family: true,mine: "true",admin: false} %>
+  <input type="hidden" name="family" id="family" value="<%= @family.id %>" />
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="modalToggle">Remove!</a>
+<% else %>
+  <h5>All of Your Items For This Family have already been recieved.</h5>
+  <p>Thank you for your gracious donation. Email info@spreadsunshine.org if you have any questions or concerns.</p>
+<% end %>
 <script>
   $("#modalToggle").click(function(){
      $(".collection>li").each(function(){

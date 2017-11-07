@@ -13,6 +13,9 @@ class Family < ApplicationRecord
   def self.isRecieved
     select{ |f| f.recieved }
   end
+  def self.isDelivered
+    select{ |f| f.delivered }
+  end
   def areMineRecieved donor
     self.items.isMine(donor).each do |i|
       if i.recieved != true

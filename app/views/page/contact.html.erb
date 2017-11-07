@@ -1,5 +1,6 @@
 <h1>Email</h1>
 <h3>To: <small><%= @user.name %>, <%= @user.email %></small></h3>
+<%= link_to "Back", admin_path %>
 <form action="/sendemail/<%=@user.id%>" method="get">
   <div class="form-group">
     <label for="subject">Subject</label>

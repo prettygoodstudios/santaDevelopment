@@ -5,7 +5,9 @@
   <li class="tab col s3"><a href="#test-swipe-3">Families</a></li>
 </ul>
 <div id="test-swipe-1" class="col s12">
-  <ul class="collection">
+  <input type="text" id="autocomplete-input" class="autocomplete">
+
+  <ul class="collection" id="donor-list">
     <% @donors.each do |d| %>
       <li class="collection-item">
         <%= link_to d.name, "/donor/#{d.id}?from=admin"%>
@@ -13,6 +15,26 @@
       </li>
     <% end %>
   </ul>
+  <script>
+    var dataPlace = {
+
+    };
+    $('#donor-list li').each(function(){
+      var donorName = $(this).children(0).html();
+      dataPlace[donorName] = null;
+    });
+    $('input.autocomplete').autocomplete(function(){
+      data: dataPlace,
+      limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+      onAutocomplete: function(val) {
+        // Callback function when value is autcompleted.
+      },
+      minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+    });
+    $('#autocomplete-input').on('input', function() {
+        // do something
+    });
+  </script>
 </div>
 <div id="test-swipe-2" class="col s12">
   <ul class="collapsible" data-collapsible="accordion">
@@ -71,8 +93,8 @@
         }else{
           $(tab_name + " .material-icons").html("add");
         }
-        $(other1 + " .material-icons").html("remove");
-        $(other2 + " .material-icons").html("remove");
+        $(other1 + " .material-icons").html("add");
+        $(other2 + " .material-icons").html("add");
       }
   </script>
 </div>
@@ -91,6 +113,11 @@
     </li>
     <li class="recieved-families">
       <div class="collapsible-header"><i class="material-icons">add</i>Recieved</div>
+      <div class="collapsible-body">
+      </div>
+    </li>
+    <li class="delivered-families">
+      <div class="collapsible-header"><i class="material-icons">add</i>Delivered</div>
       <div class="collapsible-body">
       </div>
     </li>
@@ -120,35 +147,54 @@
       };
       loadFamilies(values, true, "admin");
     });
+    $(".delivered-families").click(function(){
+      toggle_mode(".delivered-families");
+      var values = {
+        mode: "delivered"
+      };
+      loadFamilies(values, true, "admin");
+    });
     function toggle_mode(tab_name){
       var other1 = "";
       var other2 = "";
+      var other3 = "";
       switch (tab_name){
         case ".available-families":
           $(".available-families .collapsible-body").html($(".hidden-family-div").html());
           other1 = ".donated-families";
           other2 = ".recieved-families";
+          other3 = ".delivered-families";
           break;
         case ".donated-families":
           $(".donated-families .collapsible-body").html($(".hidden-family-div").html());
           other1 = ".available-families";
           other2 = ".recieved-families";
+          other3 = ".delivered-families";
           break;
         case ".recieved-families":
           $(".recieved-families .collapsible-body").html($(".hidden-family-div").html());
           other1 = ".donated-families";
           other2 = ".available-families";
+          other3 = ".delivered-families";
           break;
+        case ".delivered-families":
+            $(".delivered-families .collapsible-body").html($(".hidden-family-div").html());
+            other1 = ".donated-families";
+            other2 = ".available-families";
+            other3 = ".recieved-families";
+            break;
       }
       if ($(tab_name + " .material-icons").html() == "add"){
         $(tab_name + " .material-icons").html("remove");
       }else{
         $(tab_name + " .material-icons").html("add");
       }
-      $(other1 + " .material-icons").html("remove");
-      $(other2 + " .material-icons").html("remove");
+      $(other1 + " .material-icons").html("add");
+      $(other2 + " .material-icons").html("add");
+      $(other3 + " .material-icons").html("add");
       $(other1 + " .collapsible-body").html("");
       $(other2 + " .collapsible-body").html("");
+      $(other3 + " .collapsible-body").html("");
     }
   </script>
 </div>
