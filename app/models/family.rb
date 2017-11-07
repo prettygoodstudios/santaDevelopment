@@ -80,10 +80,10 @@ class Family < ApplicationRecord
     order("cost DESC")
   end
   def self.mostItems
-    order("left DESC")
+    order("lf DESC")
   end
   def self.leastItems
-    order("left ASC")
+    order("lf ASC")
   end
   def name_length
     if name != nil

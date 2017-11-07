@@ -47,7 +47,7 @@ function renderFamilies(families,mine,donor,mode){
     att.value = "delete";                           // Set the value of the class attribute
     delLink.setAttributeNode(att);
     secondContent.append(delLink);
-    if (user == true || mode == "admin" || mode == 1){
+    if (user == true || mode == "admin" || mode == 1 || mode != ""){
       var checkDiv = document.createElement("div");
       var checkBox = document.createElement("input");
       checkBox.type = "checkbox";

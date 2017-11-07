@@ -34,7 +34,7 @@ class FamilyController < ActionController::Base
     @family = Family.new(family_params)
     if @family.save
       @family.update_attribute("cost",0)
-      @family.update_attribute("left",0)
+      @family.update_attribute("lf",0)
       redirect_to @family
     else
       redirect_to new_family_path(@family), alert: @family.errors.values.first.to_s
@@ -114,7 +114,7 @@ class FamilyController < ActionController::Base
   end
   def api
     Family.all.each do |f|
-      f.update_attribute("left",f.items.available.length)
+      f.update_attribute("lf",f.items.available.length)
       tot = 0
       f.items.available.each do |i|
         tot += i.totalCost
@@ -144,7 +144,7 @@ class FamilyController < ActionController::Base
     end
     data = [];
     @families.each do |f|
-      h = {name: f.name,cost: f.cost,left: f.left,items: f.items,id: f.id }
+      h = {name: f.name,cost: f.cost,left: f.lf,items: f.items,id: f.id }
       if current_user != nil
         h[:myCost] = f.myCost current_user.id
         temp = f.items.isMine current_user.id

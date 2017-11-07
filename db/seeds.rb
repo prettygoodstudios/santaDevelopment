@@ -31,6 +31,6 @@ Family.all.each do |f|
       familyCost += i.totalCost
     end
     f.update_attribute("cost",familyCost)
-    f.update_attribute("left",f.items.length)
+    f.update_attribute("lf",f.items.length)
   end
 end

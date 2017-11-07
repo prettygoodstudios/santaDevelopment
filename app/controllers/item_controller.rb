@@ -20,7 +20,7 @@ class ItemController < ActionController::Base
       familyCost += i.totalCost
     end
     @family.update_attribute("cost",familyCost)
-    family.update_attribute("left", f.items.available.length)
+    family.update_attribute("lf", f.items.available.length)
     redirect_to @family, alert: "Item Deleted"
   end
   def update
@@ -32,7 +32,7 @@ class ItemController < ActionController::Base
         familyCost += i.totalCost
       end
       family.update_attribute("cost",familyCost)
-      family.update_attribute("left", family.items.available.length)
+      family.update_attribute("lf", family.items.available.length)
       redirect_to @item, alert: "Successfully Updated Item."
     else
       error_message = "<ul>".html_safe
@@ -58,7 +58,7 @@ class ItemController < ActionController::Base
         familyCost += i.totalCost
       end
       family.update_attribute("cost",familyCost)
-      family.update_attribute("left", family.items.available.length)
+      family.update_attribute("lf", family.items.available.length)
       redirect_to @item, alert: "Item Successfully Created."
     else
       redirect_to new_item_path(id: @family.id), alert: @item.errors.values[0]
@@ -102,7 +102,7 @@ class ItemController < ActionController::Base
         familyCost += i.totalCost
       end
       family.update_attribute("cost",familyCost)
-      family.update_attribute("left", family.items.available.length)
+      family.update_attribute("lf", family.items.available.length)
       UserMailer.remove_item(user,itemsRemoved).deliver_now
       user.update_attribute("contacted",true)
       user.update_attribute("message"," ");
@@ -136,7 +136,7 @@ class ItemController < ActionController::Base
         familyCost += i.totalCost
       end
       family.update_attribute("cost",familyCost)
-      family.update_attribute("left", family.items.available.length)
+      family.update_attribute("lf", family.items.available.length)
       UserMailer.contact(user).deliver_now
       user.update_attribute("contacted",true)
       user.update_attribute("message"," ");

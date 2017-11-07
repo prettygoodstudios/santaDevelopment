@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104035244) do
+ActiveRecord::Schema.define(version: 20171107005043) do
 
   create_table "families", force: :cascade do |t|
     t.string "name"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171104035244) do
     t.integer "zip"
     t.string "city"
     t.string "address"
-    t.integer "left"
+    t.integer "lf"
     t.boolean "delivered"
   end
 
