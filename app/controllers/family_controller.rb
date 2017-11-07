@@ -34,7 +34,7 @@ class FamilyController < ActionController::Base
     @family = Family.new(family_params)
     if @family.save
       @family.update_attribute("cost",0)
-      @family.update_attribute("lf",0)
+      #@family.update_attribute("lf",0)
       redirect_to @family
     else
       redirect_to new_family_path(@family), alert: @family.errors.values.first.to_s
