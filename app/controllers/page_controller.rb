@@ -20,6 +20,7 @@ class PageController < ActionController::Base
       @recieved = Item.all.recieved
       @available = Item.all.available
       @donors = User.all.order("name ASC").donor
+      @nondonors = User.all.order("name ASC").nondonor
   end
   def contact
     @user = User.find(params[:id])

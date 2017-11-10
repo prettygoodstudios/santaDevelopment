@@ -9,6 +9,9 @@ class User < ApplicationRecord
   def self.donor
     select { |u| u.is_donor}
   end
+  def self.nondonor
+    select { |u| !u.is_donor}
+  end
   def is_donor
     items.each do |i|
       if i.user_id != nil

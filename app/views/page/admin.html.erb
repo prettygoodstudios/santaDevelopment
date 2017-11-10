@@ -5,9 +5,19 @@
   <li class="tab col s3"><a id="trig3" href="#test-swipe-3">Families</a></li>
 </ul>
 <div id="test-swipe-1" class="col s12">
-  <%= link_to "Manualy Create User", "/phone_user" %>
+  <%= link_to "Manually Create User", "/phone_user" %>
+  <p>Users Who Have Donated</p>
   <ul class="collection" id="donor-list">
     <% @donors.each do |d| %>
+      <li class="collection-item">
+        <%= link_to d.name, "/donor/#{d.id}?from=admin"%>
+        <%= link_to "Contact", "/contact/"+d.id.to_s , style: "margin-left: 50px;"%>
+      </li>
+    <% end %>
+  </ul>
+  <p>Users Who Have Not Donated</p>
+  <ul class="collection" id="donor-list">
+    <% @nondonors.each do |d| %>
       <li class="collection-item">
         <%= link_to d.name, "/donor/#{d.id}?from=admin"%>
         <%= link_to "Contact", "/contact/"+d.id.to_s , style: "margin-left: 50px;"%>

@@ -2,12 +2,17 @@ class UserController < ActionController::Base
   layout 'application'
   before_action :signed_in, only: [:show]
   before_action :not_verified, only: [:verify,:sendverify,:checkToken]
-  before_action :is_admin, only:[:phone_user,:create_phone_user]
+  before_action :is_admin, only:[:phone_user,:create_phone_user,:admin_login]
   def show
     @familys = Family.all.isMine current_user.id
   end
   def phone_user
 
+  end
+  def admin_login
+    user = User.find(params[:id])
+    sign_in :user, user
+    redirect_to root_path, alert:  "Forced Logged in as #{user.name}"
   end
   def create_phone_user
     begin
