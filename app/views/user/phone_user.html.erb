@@ -1,0 +1,17 @@
+<h1>Create New User Manualy</h1>
+<p>Password will be set to "admin0101". User can log in using this password and their email. They can change it later when they log in.</p>
+<%= form_tag "/create_phone_user" do |f| %>
+  <div class="field">
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
+  </div>
+  <div class="field">
+    <%= label_tag :email %>
+    <%= email_field_tag :email %>
+  </div>
+  <div class="field">
+    <%= label_tag :phone %>
+    <%= phone_field_tag :phone %>
+  </div>
+  <%= submit_tag "Create User", class: "waves-effect waves-light btn" %>
+<% end %>

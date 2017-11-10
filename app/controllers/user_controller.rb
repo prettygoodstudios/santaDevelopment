@@ -2,8 +2,23 @@ class UserController < ActionController::Base
   layout 'application'
   before_action :signed_in, only: [:show]
   before_action :not_verified, only: [:verify,:sendverify,:checkToken]
+  before_action :is_admin, only:[:phone_user,:create_phone_user]
   def show
     @familys = Family.all.isMine current_user.id
+  end
+  def phone_user
+
+  end
+  def create_phone_user
+    begin
+      @user = User.create!(name: params[:name], email: params[:email], phone: params[:phone], password: "admin0101", email_verify: true)
+    rescue Exception => e
+      redirect_to "/phone_user" , alert: "You must enter a "+ e.message.split(" ")[2].chomp(",")
+    ensure
+      if @user != nil
+        redirect_to "/donor/#{@user.id}",  alert: "Successfully Created User!"
+      end
+    end
   end
   def verify
     if current_user != nil
@@ -42,6 +57,17 @@ class UserController < ActionController::Base
       redirect_to root_path, alert: "No User is currently selected."
     elsif @user.email_verify
       redirect_to root_path, alert: "Your account is already activated."
+    end
+  end
+  def is_admin
+    if current_user != nil
+      if !current_user.admin
+        redirect_to root_path
+      elsif !current_user.email_verify
+        redirect_to "/verify/#{current_user.id}?resend=t"
+      end
+    else
+      redirect_to root_path
     end
   end
 end

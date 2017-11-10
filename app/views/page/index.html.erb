@@ -3,7 +3,7 @@
 <% if current_user != nil %>
   <% if current_user.admin %>
     <% us = current_user.admin %>
-    <%= link_to "New", new_family_path %>
+    <%= link_to "New Family", new_family_path %>
   <% end %>
 <% end %>
 <form action="<%= root_path %>" method="get" id="filter">

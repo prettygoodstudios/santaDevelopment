@@ -5,6 +5,7 @@
   <li class="tab col s3"><a id="trig3" href="#test-swipe-3">Families</a></li>
 </ul>
 <div id="test-swipe-1" class="col s12">
+  <%= link_to "Manualy Create User", "/phone_user" %>
   <ul class="collection" id="donor-list">
     <% @donors.each do |d| %>
       <li class="collection-item">
@@ -77,6 +78,7 @@
   </script>
 </div>
 <div id="test-swipe-3" class="col s12">
+  <%= link_to "New Family" , new_family_path %>
   <ul class="collapsible" data-collapsible="accordion">
     <li class="available-families">
       <div class="collapsible-header active"><i class="material-icons">remove</i>Available</div>

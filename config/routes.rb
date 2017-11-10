@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   get "/delivery/:id", to: "family#family_deliver"
   post "/send_delivery/:id", to: "family#delivery_is_sent"
   post "/revoke_delivery/:id", to: "family#revoke_delivery"
+  get "/phone_user", to: "user#phone_user"
+  post "/create_phone_user", to: "user#create_phone_user"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
