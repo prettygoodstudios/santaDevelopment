@@ -15,6 +15,38 @@
  */
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "materialize";
+@font-face {
+  font-family: 'Gotham Light';
+  src:font-url('GothamRnd-Light.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gotham Bold';
+  src:font-url('GothamRnd-Bold.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Setting Fonts */
+h1{
+  font-family: 'Gotham Bold';
+}
+p{
+  font-family: "Gotham Light";
+}
+.brand-logo{
+  font-family: 'Gotham Bold';
+}
+.nav-wrapper li{
+  font-family: "Gotham Light";
+}
+a{
+  font-family: "Gotham Light";
+}
+.white-text{
+  font-family: 'Gotham Bold';
+}
+/* End of Setting Fonts*/
 table, td, th{
   border: 1px;
 }

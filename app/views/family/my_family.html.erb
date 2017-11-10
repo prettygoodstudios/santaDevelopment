@@ -6,7 +6,7 @@
     <%= link_to "New Item", new_item_path(id: @family.id) %>
   <% end %>
 <% end %>
-<% if params[:user] != "undefined" %>
+<% if params[:user] != "undefined" and params[:user] != nil %>
   <%= link_to "Back", "/donor/#{@user.id}" %>
 <% else %>
   <%= link_to "Back", current_user %>
@@ -48,7 +48,7 @@
     </td>
   </tr>
 </table>
-<% if !@family.recieved %>
+<% if !@family.areMineRecieved @user.id %>
   <h5>Select Items to Remove</h5>
   <form action="/remove_status" method="post">
   <%= render partial: "sharred/items", locals: {items: @items,family: true,mine: "true",admin: false} %>
