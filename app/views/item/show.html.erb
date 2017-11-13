@@ -26,6 +26,12 @@
     <th>Description</th>
     <td><%= @item.description %></td>
   </tr>
+  <% if @item.url != nil %>
+    <tr>
+      <th>Link to Buy On Amazon</th>
+      <td><a href="<%= @item.url %>">Click to Buy <%= @item.name %> on Amazon</a></td>
+    </tr>
+  <% end %>
   <tr>
     <th>Family Member Name</th>
     <td><%= @item.member %></td>

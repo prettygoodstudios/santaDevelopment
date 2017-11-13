@@ -148,7 +148,7 @@ class ItemController < ActionController::Base
     @item = Item.find(params[:id])
   end
   def item_params
-    params.require(:item).permit(:name,:cost,:quantity,:member,:age,:description)
+    params.require(:item).permit(:name,:cost,:quantity,:member,:age,:description,:url)
   end
   def mine_or_admin
     if current_user == nil

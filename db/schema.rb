@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107005043) do
+ActiveRecord::Schema.define(version: 20171113231516) do
 
   create_table "families", force: :cascade do |t|
     t.string "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20171107005043) do
     t.decimal "totalCost"
     t.integer "user_id"
     t.boolean "recieved"
+    t.string "url"
   end
 
   create_table "models", force: :cascade do |t|

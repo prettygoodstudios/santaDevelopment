@@ -37,6 +37,11 @@ p{
 .brand-logo{
   font-family: 'Gotham Bold';
 }
+@media only screen and (max-width: 500){
+  #branding{
+    font-size: 20px !important;
+  }
+}
 .nav-wrapper li{
   font-family: "Gotham Light";
 }

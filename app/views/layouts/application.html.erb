@@ -22,7 +22,17 @@
     </div>
     <%= render "sharred/footer" %>
     <script>
+      $(window).resize(function(){
+        if (window.innerWidth < 500){
+          $("#branding").css("font-size","20px");
+        }else{
+          $("#branding").css("font-size","30px");
+        }
+      });
       $(document).ready(function(){
+        if (window.innerWidth < 500){
+          $("#branding").css("font-size","20px");
+        }
         $(".button-collapse").sideNav();
         $("#c2").click(function(){
           $("#m1").val("price");

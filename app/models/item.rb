@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :family
-  validate :quantity,:member,:age,:name,:cost,:more_zero,:name_length,:cost_zero,:member_age,:member_name,:description_length
+  validate :quantity,:member,:age,:name,:cost,:more_zero,:name_length,:cost_zero,:member_age,:member_name,:description_length,:url
   def self.available
     select { |i| i.user_id == nil }
   end
