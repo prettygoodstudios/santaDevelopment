@@ -2,7 +2,7 @@
   <% items = items.select{ |i| !i.recieved } if mine == "true" %>
   <% items.each do |i| %>
     <li class="collection-item avatar">
-      <img src="https://maxcdn.icons8.com/Share/icon/Clothing//t-shirt1600.png" class="circle">
+      <img src="https://s3-us-west-2.amazonaws.com/subforsantaresources/shirt-icon.png" class="circle">
       <% if mine == "true" %>
         <span class="title"><%= link_to i.name, item_path(id: i,from: "mine",user: params[:user]) %></span>
       <% elsif admin %>

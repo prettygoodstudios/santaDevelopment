@@ -17,7 +17,7 @@ function renderFamilies(families,mine,donor,mode){
     var li = document.createElement("li");
     li.className = "collection-item avatar";
     var image = document.createElement("img");
-    image.src = 'http://freeflaticons.com/wp-content/uploads/2014/11/family-copy-14164737688nk4g.png';
+    image.src = 'https://s3-us-west-2.amazonaws.com/subforsantaresources/family-icon.png';
     image.className = "circle";
     var title = document.createElement("span");
     title.className = "title";
