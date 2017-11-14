@@ -28,7 +28,7 @@ class UserController < ActionController::Base
   def new_password
     email = params[:email]
     user = User.all.where(email: email).first
-    if user
+    if user != nil
       password = rand(36**8).to_s(36)
       user.update_attribute("password",password)
       UserMailer.new_password(user,password).deliver_now
