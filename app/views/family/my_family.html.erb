@@ -17,12 +17,6 @@
       Donor Name
     </th>
     <th>
-      Family Email
-    </th>
-    <th>
-      Family Phone
-    </th>
-    <th>
       Cost
     </th>
     <th>
@@ -32,12 +26,6 @@
   <tr>
     <td>
       <%= @user.name %>
-    </td>
-    <td>
-      <%= @family.email %>
-    </td>
-    <td>
-      <%= number_to_phone @family.phone %>
     </td>
     <td>
       <%= number_to_currency @family.myCost @user.id %>
