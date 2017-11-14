@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   get "/phone_user", to: "user#phone_user"
   post "/create_phone_user", to: "user#create_phone_user"
   post "/admin_login/:id", to: "user#admin_login"
+  post "/new_password", to: "user#new_password"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

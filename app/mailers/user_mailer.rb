@@ -21,4 +21,10 @@ class UserMailer < ApplicationMailer
     @items = items.chomp(",")
     mail(to: @user.email, subject: "Sub For Santa Removed Items")
   end
+  def new_password(user,password)
+    @user = User.find(user.id)
+    @password = password
+    @url = new_user_session_url
+    mail(to: @user.email, subject: "Your Password has been Reset!")
+  end
 end

@@ -25,6 +25,18 @@ class UserController < ActionController::Base
       end
     end
   end
+  def new_password
+    email = params[:email]
+    user = User.all.where(email: email).first
+    if user
+      password = rand(36**8).to_s(36)
+      user.update_attribute("password",password)
+      UserMailer.new_password(user,password).deliver_now
+      redirect_to new_user_session_path, alert: "Password has been reset check your email."
+    else
+      redirect_to new_user_password_path, alert: "This email was not found in our system."
+    end
+  end
   def verify
     if current_user != nil
       @user = current_user

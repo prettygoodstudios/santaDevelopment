@@ -1,16 +1,13 @@
 <h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
+<p/>Enter in your email to recieve a new password. Your new password will be sent to your email address.<p>
+<%= form_tag("/new_password",method: "post") do %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= label_tag :email %><br />
+    <%= email_field_tag :email %>
   </div>
-
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= submit_tag "Send me reset password instructions", class: "waves-effect waves-light btn" %>
   </div>
 <% end %>
-
+<br>
 <%= render "devise/shared/links" %>
