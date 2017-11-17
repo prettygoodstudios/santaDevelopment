@@ -1,6 +1,13 @@
 <h1>Deliver</h1>
 <p>Family Name: <%= @family.name %></p>
-<p>Family Address: <%= @family.address + " "+ @family.city %></p>
+<p>Family Address: <%= @family.address + ", "+ @family.city %>, UT</p>
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDeRKNH5CbjJ2s2d19a3WYR-lYQQ6b3eUU
+    &q=<%= @family.address %>, <%= @family.city %>UT" allowfullscreen>
+</iframe>
 <%= link_to "Back", "/family_admin/#{@family.id}" %>
 <%= render partial: "sharred/items", locals: {items: @family.items, mine: false, admin: true, admin_home: true, family: @family} %>
 <%= link_to "Delivery Has Been Sent", "/send_delivery/#{@family.id}", class: "waves-effect waves-light btn", method: "post" %>
