@@ -2,7 +2,7 @@ class UserController < ActionController::Base
   layout 'application'
   before_action :signed_in, only: [:show]
   before_action :not_verified, only: [:verify,:sendverify,:checkToken]
-  before_action :is_admin, only:[:phone_user,:create_phone_user,:admin_login]
+  before_action :is_admin, only:[:phone_user,:create_phone_user,:admin_login,:promote]
   def show
     @familys = Family.all.isMine current_user.id
   end
@@ -13,6 +13,16 @@ class UserController < ActionController::Base
     user = User.find(params[:id])
     sign_in :user, user
     redirect_to root_path, alert:  "Forced Logged in as #{user.name}"
+  end
+  def promote
+    user = User.find(params[:id])
+    user.update_attribute("admin",true)
+    redirect_to admin_path, alert: "#{user.name} has been promoted to an admin"
+  end
+  def demote
+    user = User.find(params[:id])
+    user.update_attribute("admin",false)
+    redirect_to admin_path, alert: "#{user.name} has lost their admin status"
   end
   def create_phone_user
     begin

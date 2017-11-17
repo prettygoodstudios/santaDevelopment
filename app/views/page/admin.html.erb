@@ -12,6 +12,11 @@
       <li class="collection-item">
         <%= link_to d.name, "/donor/#{d.id}?from=admin"%>
         <%= link_to "Contact", "/contact/"+d.id.to_s , style: "margin-left: 50px;"%>
+        <% if !d.admin %>
+          <%= link_to "Promote To Admin", "/promote/"+d.id.to_s , style: "margin-left: 50px;", method: "post"%>
+        <% else %>
+          <%= link_to "Demote", "/demote/"+d.id.to_s , style: "margin-left: 50px;", method: "post"%>
+        <% end %>
       </li>
     <% end %>
   </ul>
@@ -21,6 +26,11 @@
       <li class="collection-item">
         <%= link_to d.name, "/donor/#{d.id}?from=admin"%>
         <%= link_to "Contact", "/contact/"+d.id.to_s , style: "margin-left: 50px;"%>
+        <% if !d.admin %>
+          <%= link_to "Promote To Admin", "/promote/"+d.id.to_s , style: "margin-left: 50px;", method: "post"%>
+        <% else %>
+          <%= link_to "Demote", "/demote/"+d.id.to_s , style: "margin-left: 50px;", method: "post"%>
+        <% end %>
       </li>
     <% end %>
   </ul>
