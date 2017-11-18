@@ -1,5 +1,6 @@
 <h1><%= @donor.name %></h1>
 <%= link_to "Back", "/admin" %>
+<br>
 <%= link_to "Force Log In As This User", "/admin_login/#{@donor.id}", method: "post" %>
 <h3>Contact Info</h3>
 <table>
