@@ -3,6 +3,7 @@ class FamilyController < ActionController::Base
   before_action :set_family, only: [:show,:edit,:destroy,:update,:add_family,:remove_family]
   before_action :is_admin, only: [:edit,:destroy,:update,:create,:new,:family_admin,:family_deliver,:delivery_is_sent,:revoke_delivery]
   before_action :mine_or_admin, only: [:my_family]
+  before_action :address_exist, only: [:delivery_is_sent,:revoke_delivery]
   def index
       @families = Family.all.available
   end
@@ -115,6 +116,12 @@ class FamilyController < ActionController::Base
     @family = Family.find(params[:id])
     @family.update_attribute("delivered",false)
     redirect_to "/admin", alert: "Delivery Has Been Revoked"
+  end
+  def address_exist
+    @family = Family.find(params[:id])
+    if @family.address == nil
+      redirect_to edit_family_path(@family), alert: "Please Set the Address For this Family Before Proceding."
+    end
   end
   def api
     Family.all.each do |f|
